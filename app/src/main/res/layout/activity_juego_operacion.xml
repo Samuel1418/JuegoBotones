@@ -8,11 +8,32 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="140dp"
-        android:layout_height="81dp"
+        android:layout_width="245dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="40dp"
+        android:text="Cual es el resultado de la siguiente operacion? \n 5+6x3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSalir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="200dp"
+        android:text="Comprobar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txtOperacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
-        android:layout_marginTop="32dp"
-        android:text=""
+        android:layout_marginTop="208dp"
+        android:ems="10"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JuegoConIntent</string>
+    <string name="title_activity_juego_nav">JuegoNav</string>
+</resources>
