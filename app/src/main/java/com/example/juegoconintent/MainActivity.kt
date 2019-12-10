@@ -5,12 +5,13 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
 const val REQUEST_NAVEGADOR = 1
 const val REQUEST_OPERACION = 2  //No se puede dejar en 1 ya que si hacemos asi al ejecutar un juego se desactiva el resto
-
+const val REQUEST_CRONOMETRO=3
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         btnMates.setOnClickListener {
             val intent2 = Intent(this, JuegoOperacion::class.java)
             startActivityForResult(intent2, REQUEST_OPERACION)
+        }
+
+        btnCronometro.setOnClickListener {
+            val intent3 = Intent(this, JuegoCronometro::class.java)
+            startActivityForResult(intent3, REQUEST_CRONOMETRO)
         }
 
 
@@ -62,11 +68,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-
-
-
-
-
+        if (requestCode == REQUEST_CRONOMETRO) {  //Reto parar en 5 segundos
+            if (resultCode == Activity.RESULT_OK) {
+               if (intent?.getIntExtra("tiempoIni",0)==(intent?.getIntExtra("tiempoFinal",0))){
+                       btnCronometro.setBackgroundColor(Color.GREEN)
+                       toast("Buen trabajo!")
+            } else {
+                    btnCronometro.setBackgroundColor(Color.RED)
+                    toast("Has fallado...")
+                }
+                btnCronometro.setEnabled(false)
+            }
         }
-    }
+
+
+
+
+}
+}
