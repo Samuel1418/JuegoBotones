@@ -12,6 +12,7 @@ import org.jetbrains.anko.toast
 const val REQUEST_NAVEGADOR = 1
 const val REQUEST_OPERACION = 2  //No se puede dejar en 1 ya que si hacemos asi al ejecutar un juego se desactiva el resto
 const val REQUEST_CRONOMETRO=3
+const val REQUEST_CAMARA=4
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +39,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        btnCamara.setOnClickListener {
+            val intent2 = Intent(this, activity_juegoCamara::class.java)
+            startActivityForResult(intent2, REQUEST_CAMARA)
+        }
+
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
 
@@ -67,13 +74,12 @@ class MainActivity : AppCompatActivity() {
                 btnMates.setEnabled(false)
             }
         }
-
         if (requestCode == REQUEST_CRONOMETRO) {  //Reto parar en 5 segundos
             if (resultCode == Activity.RESULT_OK) {
-               if (intent?.getIntExtra("tiempoIni",0)==(intent?.getIntExtra("tiempoFinal",0))){
-                       btnCronometro.setBackgroundColor(Color.GREEN)
-                       toast("Buen trabajo!")
-            } else {
+                if ((intent?.getIntExtra("tiempoFinal", 0)==((intent?.getIntExtra("tiempoIni", 0))))) {
+                    btnCronometro.setBackgroundColor(Color.GREEN)
+                    toast("Buen trabajo!")
+                } else {
                     btnCronometro.setBackgroundColor(Color.RED)
                     toast("Has fallado...")
                 }
@@ -81,8 +87,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-
-
-}
+        if (requestCode == REQUEST_CAMARA) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (intent?.getBooleanExtra("resp", false)!!.equals(true)) {
+                    btnCamara.setBackgroundColor(Color.GREEN)
+                    toast("CORRECTO")//toast informativa
+                } else {
+                    btnCamara.setBackgroundColor(Color.RED)
+                    toast("INCORRECTO")
+                }
+                btnCamara.setEnabled(false)
+            }
+        }
+    }
 }

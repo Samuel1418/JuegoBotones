@@ -18,7 +18,7 @@ class JuegoCronometro : AppCompatActivity() {
         setContentView(R.layout.activity_juego_cronometro)
 
         btnIniciar.setOnClickListener {
-            val tiempoIni= (System.currentTimeMillis()+5).toInt() //pasado a int para que no se comparen los long
+            val tiempoIni= ((System.currentTimeMillis()).toInt()+5)//pasado a int para que no se comparen los long
             btnIniciar.setEnabled(false)  //Que se desactive al usarse
             intent.putExtra("tiempoIni",tiempoIni)
             toast("Empieza!")
