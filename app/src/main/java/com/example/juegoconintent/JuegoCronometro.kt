@@ -18,8 +18,8 @@ class JuegoCronometro : AppCompatActivity() {
         setContentView(R.layout.activity_juego_cronometro)
 
         btnIniciar.setOnClickListener {
-            val tiempoIni= ((System.currentTimeMillis()).toInt()+5)//pasado a int para que no se comparen los long
-            btnIniciar.setEnabled(false)  //Que se desactive al usarse
+            val tiempoIni= (((System.currentTimeMillis())/1000).toInt()+5) //Hay que dividirlos entre mil para que funcione ya que aunque se pase a int estaba cogiendo un numero muy justo
+            btnIniciar.setEnabled(false) //Una vez que inicias no puedes volver a hacerlo
             intent.putExtra("tiempoIni",tiempoIni)
             toast("Empieza!")
 
@@ -27,7 +27,7 @@ class JuegoCronometro : AppCompatActivity() {
         }
 
         btnParar.setOnClickListener {
-            val tiempoFinal= (System.currentTimeMillis()).toInt()
+            val tiempoFinal= ((System.currentTimeMillis())/1000).toInt()
             intent.putExtra("tiempoFinal",tiempoFinal)
             setResult(Activity.RESULT_OK,intent)
             finish()

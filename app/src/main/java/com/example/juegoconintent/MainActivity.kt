@@ -76,7 +76,8 @@ class MainActivity : AppCompatActivity() {
         }
         if (requestCode == REQUEST_CRONOMETRO) {  //Reto parar en 5 segundos
             if (resultCode == Activity.RESULT_OK) {
-                if ((intent?.getIntExtra("tiempoFinal", 0)==((intent?.getIntExtra("tiempoIni", 0))))) {
+                //Se cogen los int y si coinciden los enteros se da por correcto
+                if (intent?.getIntExtra("tiempoFinal", 0)==((intent?.getIntExtra("tiempoIni", 0)))) {
                     btnCronometro.setBackgroundColor(Color.GREEN)
                     toast("Buen trabajo!")
                 } else {
@@ -89,12 +90,13 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == REQUEST_CAMARA) {
             if (resultCode == Activity.RESULT_OK) {
+                //Dependiendo de si se ha recogido rojo o no nos dara un resultado. Si el valor que llega es un true es correcto
                 if (intent?.getBooleanExtra("resp", false)!!.equals(true)) {
                     btnCamara.setBackgroundColor(Color.GREEN)
-                    toast("CORRECTO")//toast informativa
+                    toast("Bien hecho!")
                 } else {
                     btnCamara.setBackgroundColor(Color.RED)
-                    toast("INCORRECTO")
+                    toast("Has fallado...")
                 }
                 btnCamara.setEnabled(false)
             }
